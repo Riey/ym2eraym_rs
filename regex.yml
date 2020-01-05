@@ -1,0 +1,56 @@
+- regex     : 'RETURN 0'
+  replace   : 'return false;'
+
+- regex     : 'RETURN 1'
+  replace   : 'return true;'
+
+- regex     : '\bASSIPLAY == 0'
+  replace   : '!assiplay'
+
+- regex     : '\bASSIPLAY == 1'
+  replace   : 'assiplay'
+
+- regex     : ':PLAYER:'
+  replace   : ':player:'
+
+- regex     : ':TARGET:'
+  replace   : ':target:'
+
+- regex     : ':ASSI:'
+  replace   : ':assi:'
+
+- regex     : ':MASTER:'
+  replace   : ':master:'
+
+- regex     : '\bSIF (.+)\n *(.+)'
+  replace   : "if $1 { $2 }"
+
+- regex     : '\bIF (.+)'
+  replace   : "if $1 {"
+
+- regex     : '\bELSEIF (.+)'
+  replace   : "} else if $1 {"
+
+- regex     : '\bELSE'
+  replace   : "} else {"
+
+- regex     : '\bENDIF'
+  replace   : "}"
+
+- regex     : '\bSOURCE:(.+?):([^ ,]+)'
+  replace   : "$1.source[Source::$2]"
+
+- regex     : '\bTEQUIP:(.+?):([^ ,]+)'
+  replace   : "$1.tequip[Tequip::$2]"
+
+- regex     : '\bABL:(.+?):([^ ,]+)'
+  replace   : "$1.abl[Abl::$2]"
+
+- regex     : '\bTALENT:(.+?):([^ ,]+)'
+  replace   : "$1.talent[Talent::$2]"
+
+- regex     : '\bSOURCE(:TARGET)?:([^ ,]+) *([\+\*-/%]?=) SOURCE(:TARGET)?:([^\s]+) (.+)'
+  replace   : "target.source[Source::$2] $3 target.source[Source::$5] $6"
+
+- regex     : '\bTIMES (.+?)\.source\[Source::(.+?)\] *, *(\d+).(\d+)'
+  replace   : "times_source($1, Source::$2, $3$4);"
