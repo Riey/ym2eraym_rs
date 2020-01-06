@@ -1,6 +1,37 @@
 - regex     : '; ?(.+)'
   replace   : '// $1'
 
+- regex     : 'PRINT(FORM)?W (.*)'
+  replace   : "siv.print_wait(format!(\"$2\"));"
+
+- regex     : 'PRINT(FORM)?L (.*)'
+  replace   : "siv.print_line(format!(\"$2\"));"
+
+- regex     : 'PRINT(FORM)? (.*)'
+  replace   : "siv.print(format!(\"$2\"));"
+
+- regex     : 'format!\("([^%\{"]*)[%\{]([^%\}]+)[%\}]([^"]*)"(,[^,\)]+)*\)'
+  replace   : "format!(\"$1{}$3\"$4, $2)"
+
+# Remove useless format!
+#- regex     : 'format!\("([^"\{]*)"\)'
+#  replace   : '"$1"'
+
+- regex     : 'CALLNAME:(\w+)'
+  replace   : "$1.call_name"
+
+- regex     : 'NICKNAME:(\w+)'
+  replace   : "$1.nick_name"
+
+- regex     : 'MASTERNAME:(\w+)'
+  replace   : "$1.master_name"
+
+- regex     : 'NAME:(\w+)'
+  replace   : "$1.name"
+
+- regex     : '조사처리\(([^,]+), "([^"]+)"\)'
+  replace   : 'process_josa("$1", "$2")'
+
 - regex     : 'RETURN 0'
   replace   : 'return false;'
 
