@@ -39,16 +39,25 @@
 - regex     : '\bENDIF'
   replace   : "}"
 
-- regex     : '\bSOURCE:(.+?):([^ ,]+)'
+- regex     : '\bSOURCE:([^:]+):([^ ,]+)'
   replace   : "$1.source[Source::$2]"
 
-- regex     : '\bTEQUIP:(.+?):([^ ,]+)'
+- regex     : '\bBASE:([^:]+):([^ ,]+)'
+  replace   : "$1.base[Base::$2].current"
+
+- regex     : '\bMAXBASE:([^:]+):([^ ,]+)'
+  replace   : "$1.base[Base::$2].max"
+
+- regex     : '\bDOWNBASE:([^:]+):([^ ,]+)'
+  replace   : "$1.down_base[Base::$2]"
+
+- regex     : '\bTEQUIP:([^:]+):([^ ,]+)'
   replace   : "$1.tequip[Tequip::$2]"
 
-- regex     : '\bABL:(.+?):([^ ,]+)'
+- regex     : '\bABL:([^:]+):([^ ,]+)'
   replace   : "$1.abl[Abl::$2]"
 
-- regex     : '\bTALENT:(.+?):([^ ,]+)'
+- regex     : '\bTALENT:([^:]+):([^ ,]+)'
   replace   : "$1.talent[Talent::$2]"
 
 - regex     : '\bSOURCE(:TARGET)?:([^ ,]+) *([\+\*-/%]?=) SOURCE(:TARGET)?:([^\s]+) (.+)'
