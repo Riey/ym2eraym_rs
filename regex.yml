@@ -1,3 +1,5 @@
+- regex     : '; ?(.+)'
+  replace   : '// $1'
 - regex     : 'RETURN 0'
   replace   : 'return false;'
 
