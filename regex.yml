@@ -1,5 +1,6 @@
 - regex     : '; ?(.+)'
   replace   : '// $1'
+
 - regex     : 'RETURN 0'
   replace   : 'return false;'
 
@@ -12,17 +13,17 @@
 - regex     : '\bASSIPLAY == 1'
   replace   : 'assiplay'
 
-- regex     : ':PLAYER:'
-  replace   : ':player:'
+- regex     : 'PLAYER'
+  replace   : 'player'
 
-- regex     : ':TARGET:'
-  replace   : ':target:'
+- regex     : 'TARGET'
+  replace   : 'target'
 
-- regex     : ':ASSI:'
-  replace   : ':assi:'
+- regex     : 'ASSI'
+  replace   : 'assi'
 
-- regex     : ':MASTER:'
-  replace   : ':master:'
+- regex     : 'MASTER'
+  replace   : 'master'
 
 - regex     : '\bSIF (.+)\n *(.+)'
   replace   : "if $1 { $2 }"
@@ -39,25 +40,25 @@
 - regex     : '\bENDIF'
   replace   : "}"
 
-- regex     : '\bSOURCE:([^:]+):([^ ,]+)'
+- regex     : '\bSOURCE:(.+?):([^ ,]+)'
   replace   : "$1.source[Source::$2]"
 
-- regex     : '\bBASE:([^:]+):([^ ,]+)'
+- regex     : '\bBASE:(.+?):([^ ,]+)'
   replace   : "$1.base[Base::$2].current"
 
-- regex     : '\bMAXBASE:([^:]+):([^ ,]+)'
+- regex     : '\bMAXBASE:(.+?):([^ ,]+)'
   replace   : "$1.base[Base::$2].max"
 
-- regex     : '\bDOWNBASE:([^:]+):([^ ,]+)'
+- regex     : '\bDOWNBASE:(.+?):([^ ,]+)'
   replace   : "$1.down_base[Base::$2]"
 
-- regex     : '\bTEQUIP:([^:]+):([^ ,]+)'
+- regex     : '\bTEQUIP:(.+?):([^ ,]+)'
   replace   : "$1.tequip[Tequip::$2]"
 
-- regex     : '\bABL:([^:]+):([^ ,]+)'
+- regex     : '\bABL:(.+?):([^ ,]+)'
   replace   : "$1.abl[Abl::$2]"
 
-- regex     : '\bTALENT:([^:]+):([^ ,]+)'
+- regex     : '\bTALENT:(.+?):([^ ,]+)'
   replace   : "$1.talent[Talent::$2]"
 
 - regex     : '\bSOURCE(:TARGET)?:([^ ,]+) *([\+\*-/%]?=) SOURCE(:TARGET)?:([^\s]+) (.+)'
