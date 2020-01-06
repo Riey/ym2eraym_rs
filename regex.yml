@@ -43,6 +43,9 @@
 - regex     : '\bSOURCE:(\w+):(\w+)'
   replace   : "$1.source[Source::$2]"
 
+- regex     : '\bMARK:(\w+):(\w+)'
+  replace   : "$1.mark[Mark::$2]"
+
 - regex     : '\bBASE:(\w+):(\w+)'
   replace   : "$1.base[Base::$2].current"
 
