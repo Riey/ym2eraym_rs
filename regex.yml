@@ -40,29 +40,38 @@
 - regex     : '\bENDIF'
   replace   : "}"
 
-- regex     : '\bSOURCE:(.+?):([^ ,]+)'
+- regex     : '\bSOURCE:(\w+):(\w+)'
   replace   : "$1.source[Source::$2]"
 
-- regex     : '\bBASE:(.+?):([^ ,]+)'
+- regex     : '\bBASE:(\w+):(\w+)'
   replace   : "$1.base[Base::$2].current"
 
-- regex     : '\bMAXBASE:(.+?):([^ ,]+)'
+- regex     : '\bMAXBASE:(\w+):(\w+)'
   replace   : "$1.base[Base::$2].max"
 
-- regex     : '\bDOWNBASE:(.+?):([^ ,]+)'
+- regex     : '\bDOWNBASE:(\w+):(\w+)'
   replace   : "$1.down_base[Base::$2]"
 
-- regex     : '\bTEQUIP:(.+?):([^ ,]+)'
-  replace   : "$1.tequip[Tequip::$2]"
+- regex     : '\bTEQUIP:(\w+):(\w+)'
+  replace   : "$1.tequip.contains(Tequip::$2)"
 
-- regex     : '\bABL:(.+?):([^ ,]+)'
+- regex     : '\bABL:(\w+):(\w+)'
   replace   : "$1.abl[Abl::$2]"
 
-- regex     : '\bTALENT:(.+?):([^ ,]+)'
+- regex     : '\bTALENT:(\w+):(\w+)'
   replace   : "$1.talent[Talent::$2]"
 
-- regex     : '\bSOURCE(:TARGET)?:([^ ,]+) *([\+\*-/%]?=) SOURCE(:TARGET)?:([^\s]+) (.+)'
-  replace   : "target.source[Source::$2] $3 target.source[Source::$5] $6"
+- regex     : '\bSTAIN:(\w+):(\w+) != (\d+)'
+  replace   : "$1.stain[Stain::$2].is_disjoint(to_stain($3))"
 
-- regex     : '\bTIMES (.+?)\.source\[Source::(.+?)\] *, *(\d+).(\d+)'
+- regex     : '\bSTAIN:(\w+):(\w+) (>?=|&) (\d+)'
+  replace   : "$1.stain[Stain::$2].is_superset(to_stain($4))"
+
+- regex     : '\bSTAIN:(\w+):(\w+) ([\|&\+-\^]?=) (\d+)'
+  replace   : "$1.stain[Stain::$2] $3 to_stain($4);"
+
+- regex     : '\bSOURCE:(\w+):(\w+) *([\+\*-/%]?=) SOURCE(\w+):(\w+)'
+  replace   : "$1.source[Source::$2] $3 $4.source[Source::$5]"
+
+- regex     : '\bTIMES (\w+)\.source\[Source::(\w+)\] *, *(\d+).(\d+)'
   replace   : "times_source($1, Source::$2, $3$4);"

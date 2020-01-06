@@ -6,5 +6,7 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-RUST_LOG=Debug erb-num2csv -t "$1" --normalize --explict-target --erb-regex-path "./regex.yml" -e "FLAG"
+cp ./CSV/*.CSV "$1/CSV"
+
+RUST_LOG=Debug erb-num2csv -t "$1" --normalize --explict-target --erb-regex-path "./regex.yml"
 
