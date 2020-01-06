@@ -80,6 +80,9 @@
 - regex     : '\bBASE:(\w+):(\w+)'
   replace   : "$1.base[Base::$2].current"
 
+- regex     : '\bCFLAG:(\w+):(\w+)'
+  replace   : "$1.cflag[Cflag::$2]"
+
 - regex     : '\bMAXBASE:(\w+):(\w+)'
   replace   : "$1.base[Base::$2].max"
 
