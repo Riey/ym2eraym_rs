@@ -128,6 +128,9 @@
 - regex     : '\bTALENT:(\w+):(인간|요정|흡혈귀|기계|영체|인형|악마|캇파|요호|반백택|사토리|오니|텐구|구문지|누에|황혼의괴물|신령|반신|사신|선인|강시|둔갑너구리|츠쿠모가미|인어|목분리|늑대인간)( == 1)?'
   replace   : "$1.race == Race::$2"
 
+- regex     : '\bTALENT:(\w+):(소인|작은체형|거구)'
+  replace   : "$1.body_size == BodySize::$2"
+
 - regex     : '\bTALENT:(\w+):(\w+) == 0'
   replace   : "!$1.talent[Talent::$2]"
 
