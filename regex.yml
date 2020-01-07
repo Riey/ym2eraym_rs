@@ -53,6 +53,9 @@
 - regex     : '\bASSIPLAY == 1'
   replace   : 'assiplay'
 
+- regex     : 'ASSIPLAY'
+  replace   : 'assiplay'
+
 - regex     : 'PLAYER'
   replace   : 'player'
 
