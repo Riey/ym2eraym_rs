@@ -127,6 +127,12 @@
 - regex     : '\bTALENT:(\w+):(\w+)( == 1)?'
   replace   : "$1.talent[Talent::$2]"
 
+- regex     : ' *STAIN:(\w+):(\w+) \|= 2\n *STAIN:(\w+):(\w+) \|= 4'
+  replace   : "apply_tentacle_stain($1, Stain::$2);"
+
+- regex     : ' *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)\n *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)'
+  replace   : "combine_stain_with($1, Stain::$2, $3, Stain::$4);"
+
 - regex     : '\bSTAIN:(\w+):(\w+) != (\d+)'
   replace   : "$1.stain[Stain::$2].is_disjoint(to_stain($3))"
 
@@ -135,10 +141,6 @@
 
 - regex     : '\bSTAIN:(\w+):(\w+) ([\|&\+\-\^]?=) (\d+)'
   replace   : "$1.stain[Stain::$2] $3 to_stain($4);"
-
-- regex     : ' *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)\n *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)'
-  replace   : "combine_stain_with($1, Stain::$2, $3, Stain::$4);"
-
 - regex     : '\bSOURCE:(\w+):(\w+) *([\+\*\-/%]?=) SOURCE(\w+):(\w+)'
   replace   : "$1.source[Source::$2] $3 $4.source[Source::$5];"
 
