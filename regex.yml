@@ -143,6 +143,9 @@
 - regex     : '\bEX:(\w+):(\w+)'
   replace   : "$1.ex[Ex::$2]"
 
+- regex     : 'EXP:(\w+):(\w+) < EXPLV:(\d)'
+  replace   : "get_exp_lv"
+
 - regex     : '\bEXP:(\w+):(\w+)'
   replace   : "$1.exp[Exp::$2]"
 
