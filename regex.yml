@@ -119,6 +119,20 @@
 - regex     : 'TEQUIP:입창작기구'
   replace   : 'target.equip.m'
 
+- regex     : 'TEQUIP:A계장착기구'
+  replace   : 'target.equip.a'
+
+- regex     : 'TEQUIP:C계장착기구'
+  replace   : 'target.equip.c'
+
+- regex     : 'TEQUIP:B계장착기구'
+  replace   : 'target.equip.b'
+
+- regex     : 'TEQUIP:V계장착기구'
+  replace   : 'target.equip.v'
+
+- regex     : 'TEQUIP:U계장착기구'
+  replace   : 'target.equip.u'
 
 - regex     : 'EQUIP:target:睡眠薬'
   replace   : 'target.equip.drug.contains(DrugEquip::수면제)'
