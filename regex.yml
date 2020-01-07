@@ -4,9 +4,6 @@
 - regex     : 'TCVAR'
   replace   : "EXP"
 
-- regex     : ' *IF TALENT:TARGET:남자 == 0 && TALENT:PLAYER:남자 == 0\n *TCVAR:TARGET:레즈경험 \+= (\d+)\n *ELSEIF TALENT:TARGET:남자 && TALENT:PLAYER:남자\n *TCVAR:TARGET:BL경험 \+= (\d+)\n *ENDIF'
-  replace   : 'add_gay_les_exp_with(target, player, $2, $1);'
-
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
 
@@ -198,6 +195,9 @@
 
 - regex     : '\bTIMES (\w+)\.source\[Source::(\w+)\] *, *(\d+).(\d+)'
   replace   : "times_source($1, Source::$2, $3$4);"
+
+- regex     : 'if !target\.talent\[Talent::남자\] \&\& !player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::레즈경험\] \+= (\d+)\n *\} else if target\.talent\[Talent::남자\] \&\& player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::BL경험\] \+= (\d+)\n *\}'
+  replace   : 'add_gay_les_exp_with(target, player, $2, $1);'
 
 - regex     : "[^ ]+? [\\+\\-\\*/]?= .+"
   replace   : "$0;"
