@@ -1,6 +1,9 @@
 - regex     : '; ?(.+)'
   replace   : '// $1'
 
+- regex     : ' *IF TALENT:TARGET:남자 == 0 && TALENT:PLAYER:남자 == 0\n *TCVAR:TARGET:레즈경험 \+= (\d+)\n *ELSEIF TALENT:TARGET:남자 && TALENT:PLAYER:남자\n *TCVAR:TARGET:BL경험 \+= (\d+)\n *ENDIF'
+  replace   : 'add_gay_les_exp_with(target, player, $2, $1);'
+
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
 
