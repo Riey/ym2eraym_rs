@@ -7,6 +7,13 @@
 - regex     : '%([^%]+)%'
   replace   : "{$1}"
 
+- regex     : '\\@([^\?]+)\?([^#]+)#([^\\@]+)\\@'
+  replace   : "{if $1 { @\"$2\" } else { @\"$3\" }}"
+
+# Trim \@\@ string
+- regex     : '@" ?(.+?) ?"'
+  replace   : '"$1"'
+
 - regex     : 'TOSTR\(([^\)]+)\)'
   replace   : "$1"
 
