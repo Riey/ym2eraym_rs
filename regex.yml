@@ -120,6 +120,12 @@
 - regex     : '\bABL:(\w+):(\w+)'
   replace   : "$1.abl[Abl::$2]"
 
+- regex     : '\bEX:(\w+):(\w+)'
+  replace   : "$1.ex[Ex::$2]"
+
+- regex     : '\bEXP:(\w+):(\w+)'
+  replace   : "$1.exp[Exp::$2]"
+
 - regex     : '\bUP:(\w+):(\w+)'
   replace   : "$1.up_param[Juel::$2]"
 
