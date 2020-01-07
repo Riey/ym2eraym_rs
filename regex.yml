@@ -144,7 +144,7 @@
   replace   : "$1.ex[Ex::$2]"
 
 - regex     : 'EXP:(\w+):(\w+) < EXPLV:(\d)'
-  replace   : "get_exp_lv"
+  replace   : "get_exp_lv($1, Exp::$2) < $3"
 
 - regex     : '\bEXP:(\w+):(\w+)'
   replace   : "$1.exp[Exp::$2]"
@@ -154,6 +154,9 @@
 
 - regex     : '\bPALAM:(\w+):(\w+) >= \(?PALAMLV:(\d)(?: - 1)?\)?'
   replace   : "get_param_lv($1, Juel::$2) >= $3"
+
+- regex     : '\bPALAM:(\w+):(\w+) < \(?PALAMLV:(\d)(?: - 1)?\)?'
+  replace   : "get_param_lv($1, Juel::$2) < $3"
 
 - regex     : '\bPALAM:(\w+):(\w+)'
   replace   : "$1.param[Juel::$2]"
