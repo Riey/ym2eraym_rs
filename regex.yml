@@ -109,7 +109,7 @@
   replace   : 'target.equip.drug.contains(DrugEquip::수면제)'
 
 - regex     : '\bTEQUIP:(\w+)'
-  replace   : "data.tequip.contains(Tequip::$2)"
+  replace   : "data.tequip.contains(Tequip::$1)"
 
 - regex     : '\bABL:(\w+):(\w+)'
   replace   : "$1.abl[Abl::$2]"

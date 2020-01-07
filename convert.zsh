@@ -6,7 +6,10 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-cp ./CSV/*.CSV "$1/CSV"
+for f in ./CSV/*; do
+    echo Append $f
+    cat $f >> "$1/$f"
+done
 
 RUST_LOG=Debug erb-num2csv -t "$1"  \
     --normalize --explict-target    \
