@@ -116,6 +116,9 @@
 - regex     : '\bUP:(\w+):(\w+)'
   replace   : "$1.up_param[Juel::$2]"
 
+- regex     : '\bPALAM:(\w+):(\w+) >= \(?PALAMLV:(\d) - 1\)?'
+  replace   : "param_lv($1, Juel::$2) >= $3"
+
 - regex     : '\bPALAM:(\w+):(\w+)'
   replace   : "$1.param[Juel::$2]"
 
