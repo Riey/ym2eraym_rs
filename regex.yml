@@ -207,3 +207,9 @@
 
 - regex     : "[^ ]+? [\\+\\-\\*/]?= .+"
   replace   : "$0;"
+
+# reduce leading zero
+# 020 -> 20
+- regex     : ' 0(\d+)'
+  replace   : " $1"
+
