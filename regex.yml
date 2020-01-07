@@ -22,6 +22,9 @@
 - regex     : '%([^%]+)%'
   replace   : "{$1}"
 
+- regex     : 'TOSTR\(([^\)]+)\)'
+  replace   : "$1"
+
 - regex     : 'PRINT(FORM)?W (.*)'
   replace   : "ym_print!(r#\"$2\"#, siv, W);"
 
