@@ -20,14 +20,20 @@
 - regex     : 'TOSTR\(([^\)]+)\)'
   replace   : "$1"
 
-- regex     : 'PRINT(FORM)?W (.*)'
+- regex     : 'PRINT(FORM)?W(?: (.*))?'
   replace   : "ym_print!(r#\"$2\"#, siv, W);"
 
-- regex     : 'PRINT(FORM)?L (.*)'
+- regex     : 'PRINT(FORM)?L(?: (.*))?'
   replace   : "ym_print!(r#\"$2\"#, siv, L);"
 
-- regex     : 'PRINT(FORM)? (.*)'
+- regex     : 'PRINT(FORM)?(?: (.*))?'
   replace   : "ym_print!(r#\"$2\"#, siv);"
+
+- regex     : 'NEWLINE'
+  replace   : "ym_newline!(siv);"
+
+- regex     : 'DRAWLINE'
+  replace   : "ym_drawline!(siv);"
 
 - regex     : 'CALLNAME:(\w+)'
   replace   : "$1.call_name"
@@ -130,7 +136,7 @@
   replace   : "$1.up_param[Juel::$2]"
 
 - regex     : '\bPALAM:(\w+):(\w+) >= \(?PALAMLV:(\d)(?: - 1)?\)?'
-  replace   : "param_lv($1, Juel::$2) >= $3"
+  replace   : "get_param_lv($1, Juel::$2) >= $3"
 
 - regex     : '\bPALAM:(\w+):(\w+)'
   replace   : "$1.param[Juel::$2]"
