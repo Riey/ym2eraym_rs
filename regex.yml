@@ -222,3 +222,24 @@
 - regex     : 'Base::기력'
   replace   : 'Base::Sp'
 
+- regex     : 'to_stain\(1\)'
+  replace   : 'StainType::애액'
+
+- regex     : 'to_stain\(2\)'
+  replace   : 'StainType::페니스'
+
+- regex     : 'to_stain\(4\)'
+  replace   : 'StainType::정액'
+
+- regex     : 'to_stain\(8\)'
+  replace   : 'StainType::애널'
+
+- regex     : 'to_stain\(16\)'
+  replace   : 'StainType::모유'
+
+- regex     : 'to_stain\(32\)'
+  replace   : 'StainType::파괴의피'
+
+- regex     : 'to_stain\(64\)'
+  replace   : 'StainType::점액'
+
