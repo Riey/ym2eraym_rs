@@ -216,3 +216,9 @@
 - regex     : ' 0(\d+)'
   replace   : " $1"
 
+- regex     : 'Base::체력'
+  replace   : 'Base::Hp'
+
+- regex     : 'Base::기력'
+  replace   : 'Base::Sp'
+
