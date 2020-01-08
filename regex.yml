@@ -38,14 +38,26 @@
 - regex     : 'CALLNAME:(\w+)'
   replace   : "$1.call_name"
 
+- regex     : 'CALLNAME'
+  replace   : "target.call_name"
+
 - regex     : 'NICKNAME:(\w+)'
   replace   : "$1.nick_name"
+
+- regex     : 'NICKNAME'
+  replace   : "target.nick_name"
 
 - regex     : 'MASTERNAME:(\w+)'
   replace   : "$1.master_name"
 
+- regex     : 'MASTERNAME'
+  replace   : "target.master_name"
+
 - regex     : '\bNAME:(\w+)'
   replace   : "$1.name"
+
+- regex     : '\bNAME'
+  replace   : "target.name"
 
 - regex     : '조사처리\(([^,]+), "([^"]+)"\)'
   replace   : 'josa("$1", "$2")'
