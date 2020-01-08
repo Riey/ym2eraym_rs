@@ -202,8 +202,14 @@
 - regex     : '\bTIMES (\w+)\.source\[Source::(\w+)\] *, *(\d+).(\d+)'
   replace   : "times_source($1, Source::$2, $3$4);"
 
-- regex     : '\bTIMES ([^ ,]+) *, *(\d+).(\d+)'
+- regex     : '\bTIMES ([^,]+?) *, *(\d+).(\d+)'
   replace   : "times(&mut $1, $2$3);"
+
+- regex     : 'LIMIT\(([^,]+?) *, *([^,]+?) *, *([^,]+?) *\)'
+  replace   : "($1).min($2).max($3)"
+
+- regex     : 'LIMIT\(([^,]+?) *, *([^,]+?) *\)'
+  replace   : "($1).max($3)"
 
 - regex     : 'if !target\.talent\[Talent::남자\] \&\& !player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::레즈경험\] \+= (\d+)\n *\} else if target\.talent\[Talent::남자\] \&\& player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::BL경험\] \+= (\d+)\n *\}'
   replace   : 'add_gay_les_exp_with(target, player, $2, $1);'
