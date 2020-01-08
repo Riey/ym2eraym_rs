@@ -4,6 +4,9 @@
 - regex     : 'TCVAR'
   replace   : "EXP"
 
+- regex     : '%조사처리([^%]+)%'
+  replace   : '{josa$1}'
+
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
 
@@ -59,8 +62,8 @@
 - regex     : '\bNAME'
   replace   : "target.name"
 
-- regex     : '조사처리\(([^,]+), "([^"]+)"\)'
-  replace   : 'josa("$1", "$2")'
+- regex     : 'CSTR:(\w+):90\b'
+  replace   : "$1.master_call_name"
 
 - regex     : 'RETURN 0'
   replace   : 'return false;'
