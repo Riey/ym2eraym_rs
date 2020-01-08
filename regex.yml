@@ -30,10 +30,10 @@
   replace   : "ym_print!(r#\"$2\"#, siv);"
 
 - regex     : 'NEWLINE'
-  replace   : "ym_newline!(siv);"
+  replace   : "siv.new_line();"
 
 - regex     : 'DRAWLINE'
-  replace   : "ym_drawline!(siv);"
+  replace   : "siv.draw_line();"
 
 - regex     : 'CALLNAME:(\w+)'
   replace   : "$1.call_name"
