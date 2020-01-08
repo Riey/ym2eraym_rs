@@ -182,7 +182,7 @@
 - regex     : '\bTALENT:(\w+):(\w+)( == 1)?'
   replace   : "$1.talent[Talent::$2]"
 
-- regex     : ' *STAIN:(\w+):(\w+) \|= 2\n *STAIN:(\w+):(\w+) \|= 4'
+- regex     : ' *STAIN:(\w+):(\w+) \|= 64'
   replace   : "apply_tentacle_stain($1, Stain::$2);"
 
 - regex     : ' *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)\n *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)'
@@ -201,6 +201,9 @@
 
 - regex     : '\bTIMES (\w+)\.source\[Source::(\w+)\] *, *(\d+).(\d+)'
   replace   : "times_source($1, Source::$2, $3$4);"
+
+- regex     : '\bTIMES ([^ ,]+) *, *(\d+).(\d+)'
+  replace   : "times(&mut $1, $2$3);"
 
 - regex     : 'if !target\.talent\[Talent::남자\] \&\& !player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::레즈경험\] \+= (\d+)\n *\} else if target\.talent\[Talent::남자\] \&\& player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::BL경험\] \+= (\d+)\n *\}'
   replace   : 'add_gay_les_exp_with(target, player, $2, $1);'
