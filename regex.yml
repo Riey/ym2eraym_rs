@@ -4,8 +4,8 @@
 - regex     : 'TCVAR'
   replace   : "EXP"
 
-- regex     : '%조사처리([^%]+)%'
-  replace   : '{josa$1}'
+- regex     : '%조사처리\(([^,]+), *"([^"]+)"\)%'
+  replace   : '{josa(&$1, "$2")}'
 
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
