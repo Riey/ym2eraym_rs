@@ -5,19 +5,22 @@
   replace   : "EXP"
 
 - regex     : '%조사처리\(([^,]+), *"([^"]+)"\)%'
-  replace   : '{josa(&$1, "$2")}'
+  replace   : "\" (josa(&$1, \"$2\")) \""
 
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
 
 - regex     : '%([^%]+)%'
-  replace   : "{$1}"
+  replace   : "\" ($1) \""
+
+- regex     : '\{([^\}]+)\}'
+  replace   : "\" ( $1 ) \""
 
 - regex     : '\\@([^\?]+)\?([^#]+)#([^\\@]+)\\@'
-  replace   : "{if $1 { @\"$2\" } else { @\"$3\" }}"
+  replace   : "\" (if $1 { @\"$2\" } else { @\"$3\" }) \""
 
 - regex     : '\(([^\)]+)\) \? ([^#]+)# (.+)'
-  replace   : "if $1 { $2} else { $3 }"
+  replace   : "if $1 { $2 } else { $3 }"
 
 # Trim \@\@ string
 - regex     : '@" ?(.+?) ?"'
@@ -26,14 +29,25 @@
 - regex     : 'TOSTR\(([^\)]+)\)'
   replace   : "$1"
 
-- regex     : 'PRINT(FORM)?W(?: (.*))?'
-  replace   : "ym_print!(r#\"$2\"#, siv, W);"
+- regex     : 'PRINTFORM(?: (.*))?'
+  replace   : "ym_printn!(siv, \"$1\");"
 
-- regex     : 'PRINT(FORM)?L(?: (.*))?'
-  replace   : "ym_print!(r#\"$2\"#, siv, L);"
+- regex     : 'PRINTFORML(?: (.*))?'
+  replace   : "ym_printl!(siv, \"$1\");"
 
-- regex     : 'PRINT(FORM)?(?: (.*))?'
-  replace   : "ym_print!(r#\"$2\"#, siv);"
+- regex     : 'PRINTFORMW(?: (.*))?'
+  replace   : "ym_printw!(siv, \"$1\");"
+
+- regex     : 'PRINT (.*)'
+  replace   : "siv.print(\"$1\");"
+- regex     : 'PRINTL (.*)'
+  replace   : "siv.print_line(\"$1\");"
+- regex     : 'PRINTL'
+  replace   : "siv.print_line(\"\");"
+- regex     : 'PRINTW (.*)'
+  replace   : "siv.print_wait(\"$1\");"
+- regex     : 'PRINTW'
+  replace   : "siv.print_wait(\"\");"
 
 - regex     : 'NEWLINE'
   replace   : "siv.new_line();"
