@@ -7,6 +7,9 @@
 - regex     : '%조사처리\(([^,]+), *"([^"]+)"\)%'
   replace   : "\" (josa(&$1, \"$2\")) \""
 
+- regex     : '%조사선택\(([^,]+), *"([^"]+)"\)%'
+  replace   : "\" (josa(&$1, \"$2\")) \""
+
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
 
@@ -29,17 +32,18 @@
 - regex     : 'TOSTR\(([^\)]+)\)'
   replace   : "$1"
 
-- regex     : 'PRINTFORM(?: (.*))?'
-  replace   : "ym_printn!(siv, \"$1\");"
-
 - regex     : 'PRINTFORML(?: (.*))?'
   replace   : "ym_printl!(siv, \"$1\");"
 
 - regex     : 'PRINTFORMW(?: (.*))?'
   replace   : "ym_printw!(siv, \"$1\");"
 
-- regex     : 'PRINT (.*)'
-  replace   : "siv.print(\"$1\");"
+- regex     : 'PRINTFORM(?: (.*))?'
+  replace   : "ym_printn!(siv, \"$1\");"
+
+- regex     : 'ym_print([lwn]!)\(siv, ""'
+  replace   : "ym_print$1(siv,"
+
 - regex     : 'PRINTL (.*)'
   replace   : "siv.print_line(\"$1\");"
 - regex     : 'PRINTL'
@@ -48,6 +52,8 @@
   replace   : "siv.print_wait(\"$1\");"
 - regex     : 'PRINTW'
   replace   : "siv.print_wait(\"\");"
+- regex     : 'PRINT (.*)'
+  replace   : "siv.print(\"$1\");"
 
 - regex     : 'NEWLINE'
   replace   : "siv.new_line();"
