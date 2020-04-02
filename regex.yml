@@ -1,26 +1,20 @@
-- regex     : '; ?(.+)'
-  replace   : '// $1'
-
 - regex     : 'TCVAR'
   replace   : "EXP"
 
 - regex     : '%조사처리\(([^,]+), *"([^"]+)"\)%'
-  replace   : "\" (josa(&$1, \"$2\")) \""
-
-- regex     : '%조사선택\(([^,]+), *"([^"]+)"\)%'
-  replace   : "\" (josa(&$1, \"$2\")) \""
+  replace   : "' $1 '$2' '"
 
 - regex     : '%(ABL|TALENT|EX|EXP|MARK|JUEL|PALAM)NAME:(\w+)%'
   replace   : "$2"
 
 - regex     : '%([^%]+)%'
-  replace   : "\" ($1) \""
+  replace   : "' $1 '"
 
 - regex     : '\{([^\}]+)\}'
-  replace   : "\" ( $1 ) \""
+  replace   : "' $1 '"
 
 - regex     : '\\@([^\?]+)\?([^#]+)#([^\\@]+)\\@'
-  replace   : "\" (if $1 { @\"$2\" } else { @\"$3\" }) \""
+  replace   : "$1 '$2' '$3' [?]"
 
 - regex     : '\(([^\)]+)\) \? ([^#]+)# (.+)'
   replace   : "if $1 { $2 } else { $3 }"
@@ -32,255 +26,66 @@
 - regex     : 'TOSTR\(([^\)]+)\)'
   replace   : "$1"
 
-- regex     : 'PRINTFORML(?: (.*))?'
-  replace   : "ym_printl!(siv, \"$1\");"
+- regex     : 'PRINT(FORM)?L(?: (.*))?'
+  replace   : "'$2'@"
 
-- regex     : 'PRINTFORMW(?: (.*))?'
-  replace   : "ym_printw!(siv, \"$1\");"
+- regex     : 'PRINT(FORM)?W(?: (.*))?'
+  replace   : "'$2'#"
 
-- regex     : 'PRINTFORM(?: (.*))?'
-  replace   : "ym_printn!(siv, \"$1\");"
-
-- regex     : 'ym_print([lwn]!)\(siv, ""'
-  replace   : "ym_print$1(siv,"
-
-- regex     : 'PRINTL (.*)'
-  replace   : "siv.print_line(\"$1\");"
-- regex     : 'PRINTL'
-  replace   : "siv.print_line(\"\");"
-- regex     : 'PRINTW (.*)'
-  replace   : "siv.print_wait(\"$1\");"
-- regex     : 'PRINTW'
-  replace   : "siv.print_wait(\"\");"
-- regex     : 'PRINT (.*)'
-  replace   : "siv.print(\"$1\");"
-
-- regex     : 'NEWLINE'
-  replace   : "siv.new_line();"
-
-- regex     : 'DRAWLINE'
-  replace   : "siv.draw_line();"
+- regex     : 'PRINT(FORM)?(?: (.*))?'
+  replace   : "'$2':"
 
 - regex     : 'CALLNAME:(\w+)'
-  replace   : "$1.call_name"
+  replace   : "$1호칭"
 
 - regex     : 'CALLNAME'
-  replace   : "target.call_name"
+  replace   : "타겟호칭"
 
 - regex     : 'NICKNAME:(\w+)'
-  replace   : "$1.nick_name"
+  replace   : "$1별명"
 
 - regex     : 'NICKNAME'
-  replace   : "target.nick_name"
-
-- regex     : 'MASTERNAME:(\w+)'
-  replace   : "$1.master_name"
-
-- regex     : 'MASTERNAME'
-  replace   : "target.master_name"
+  replace   : "타겟별명"
 
 - regex     : '\bNAME:(\w+)'
-  replace   : "$1.name"
+  replace   : "$1이름"
 
 - regex     : '\bNAME'
-  replace   : "target.name"
+  replace   : "타겟이름"
 
 - regex     : 'CSTR:(\w+):90\b'
-  replace   : "$1.master_call_name"
+  replace   : "$1주인애칭"
 
 - regex     : 'RETURN 0'
-  replace   : 'return false;'
+  replace   : '종료'
 
 - regex     : 'RETURN 1'
-  replace   : 'return true;'
-
-- regex     : '\bASSIPLAY == 0'
-  replace   : '!assiplay'
-
-- regex     : '\bASSIPLAY == 1'
-  replace   : 'assiplay'
-
-- regex     : 'ASSIPLAY'
-  replace   : 'assiplay'
+  replace   : '종료'
 
 - regex     : 'PLAYER'
-  replace   : 'player'
+  replace   : '주인'
 
 - regex     : 'TARGET'
-  replace   : 'target'
+  replace   : '타겟'
 
 - regex     : 'ASSI'
-  replace   : 'assi'
+  replace   : '조수'
 
 - regex     : 'MASTER'
-  replace   : 'master'
+  replace   : '주인'
 
-- regex     : '\bSIF (.+)\n *(.+)'
-  replace   : "if $1 { $2 }"
+- regex     : '\b(SOURCE|MARK|BASE|MAXBASE|DOWNBASE|ABL|EX|EXP|PALAM|TALENT):(\w+):(\w+)'
+  replace   : "$2$1"
 
-- regex     : '\bIF (.+)'
-  replace   : "if $1 {"
-
-- regex     : '\bELSEIF (.+)'
-  replace   : "} else if $1 {"
-
-- regex     : '\bELSE'
-  replace   : "} else {"
-
-- regex     : '\bENDIF'
-  replace   : "}"
-
-- regex     : '\bSOURCE:(\w+):(\w+)'
-  replace   : "$1.source[Source::$2]"
-
-- regex     : '\bMARK:(\w+):(\w+)'
-  replace   : "$1.mark[Mark::$2]"
-
-- regex     : '\bBASE:(\w+):(\w+)'
-  replace   : "$1.base[Base::$2].current"
-
-- regex     : '\bCFLAG:(\w+):(\w+)'
-  replace   : "$1.cflag[Cflag::$2]"
-
-- regex     : '\bMAXBASE:(\w+):(\w+)'
-  replace   : "$1.base[Base::$2].max"
-
-- regex     : '\bDOWNBASE:(\w+):(\w+)'
-  replace   : "$1.down_base[Base::$2]"
-
-- regex     : 'TEQUIP:눈창작기구'
-  replace   : 'target.equip.e'
-
-- regex     : 'TEQUIP:입창작기구'
-  replace   : 'target.equip.m'
-
-- regex     : 'TEQUIP:A계장착기구'
-  replace   : 'target.equip.a'
-
-- regex     : 'TEQUIP:C계장착기구'
-  replace   : 'target.equip.c'
-
-- regex     : 'TEQUIP:B계장착기구'
-  replace   : 'target.equip.b'
-
-- regex     : 'TEQUIP:V계장착기구'
-  replace   : 'target.equip.v'
-
-- regex     : 'TEQUIP:U계장착기구'
-  replace   : 'target.equip.u'
+- regex     : 'TEQUIP:'
+  replace   : ''
 
 - regex     : 'EQUIP:target:睡眠薬'
-  replace   : 'target.equip.drug.contains(DrugEquip::수면제)'
+  replace   : '수면제'
 
-- regex     : '\bTEQUIP:(\w+)'
-  replace   : "data.tequip.contains(Tequip::$1)"
+- regex     : "'' ?"
+  replace   : ""
 
-- regex     : '\bABL:(\w+):(\w+)'
-  replace   : "$1.abl[Abl::$2]"
-
-- regex     : '\bEX:(\w+):(\w+)'
-  replace   : "$1.ex[Ex::$2]"
-
-- regex     : 'EXP:(\w+):(\w+) (>=?|<=?) EXPLV:(\d)'
-  replace   : "get_exp_lv($1, Exp::$2) $3 $4"
-
-- regex     : '\bEXP:(\w+):(\w+)'
-  replace   : "$1.exp[Exp::$2]"
-
-- regex     : '\bUP:(\w+):(\w+)'
-  replace   : "$1.up_param[Juel::$2]"
-
-- regex     : '\bPALAM:(\w+):(\w+) (>=?|<=?) \(?PALAMLV:(\d)(?: - 1)?\)?'
-  replace   : "get_param_lv($1, Juel::$2) $3 $4"
-
-- regex     : '\bPALAM:(\w+):(\w+)'
-  replace   : "$1.param[Juel::$2]"
-
-- regex     : '\bJUEL:(\w+):(\w+)'
-  replace   : "$1.juel[Juel::$2]"
-
-- regex     : '\b!TALENT:(\w+):(인간|요정|흡혈귀|기계|영체|인형|악마|캇파|요호|반백택|사토리|오니|텐구|구문지|누에|황혼의괴물|신령|반신|사신|선인|강시|둔갑너구리|츠쿠모가미|인어|목분리|늑대인간)'
-  replace   : "$1.race != Race::$2"
-
-- regex     : '\bTALENT:(\w+):(인간|요정|흡혈귀|기계|영체|인형|악마|캇파|요호|반백택|사토리|오니|텐구|구문지|누에|황혼의괴물|신령|반신|사신|선인|강시|둔갑너구리|츠쿠모가미|인어|목분리|늑대인간) == 0'
-  replace   : "$1.race != Race::$2"
-
-- regex     : '\bTALENT:(\w+):(인간|요정|흡혈귀|기계|영체|인형|악마|캇파|요호|반백택|사토리|오니|텐구|구문지|누에|황혼의괴물|신령|반신|사신|선인|강시|둔갑너구리|츠쿠모가미|인어|목분리|늑대인간)( == 1)?'
-  replace   : "$1.race == Race::$2"
-
-- regex     : '\bTALENT:(\w+):(소인|작은체형|거구)'
-  replace   : "$1.body_size == BodySize::$2"
-
-- regex     : '\bTALENT:(\w+):(\w+) == 0'
-  replace   : "!$1.talent[Talent::$2]"
-
-- regex     : '\bTALENT:(\w+):(\w+)( == 1)?'
-  replace   : "$1.talent[Talent::$2]"
-
-- regex     : ' *STAIN:(\w+):(\w+) \|= 64'
-  replace   : "apply_tentacle_stain($1, Stain::$2);"
-
-- regex     : ' *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)\n *STAIN:(\w+):(\w+) \|= STAIN:(\w+):(\w+)'
-  replace   : "combine_stain_with($1, Stain::$2, $3, Stain::$4);"
-
-- regex     : '\bSTAIN:(\w+):(\w+) != (\d+)'
-  replace   : "$1.stain[Stain::$2].is_disjoint(to_stain($3))"
-
-- regex     : '\bSTAIN:(\w+):(\w+) (>?=|&) (\d+)'
-  replace   : "$1.stain[Stain::$2].is_superset(to_stain($4))"
-
-- regex     : '\bSTAIN:(\w+):(\w+) ([\|&\+\-\^]?=) (\d+)'
-  replace   : "$1.stain[Stain::$2] $3 to_stain($4);"
-- regex     : '\bSOURCE:(\w+):(\w+) *([\+\*\-/%]?=) SOURCE(\w+):(\w+)'
-  replace   : "$1.source[Source::$2] $3 $4.source[Source::$5];"
-
-- regex     : '\bTIMES (\w+)\.source\[Source::(\w+)\] *, *(\d+).(\d+)'
-  replace   : "times_source($1, Source::$2, $3$4);"
-
-- regex     : '\bTIMES ([^,]+?) *, *(\d+).(\d+)'
-  replace   : "times(&mut $1, $2$3);"
-
-- regex     : 'LIMIT\(([^,]+?) *, *([^,]+?) *, *([^,]+?) *\)'
-  replace   : "($1).min($2).max($3)"
-
-- regex     : 'LIMIT\(([^,]+?) *, *([^,]+?) *\)'
-  replace   : "($1).max($3)"
-
-- regex     : 'if !target\.talent\[Talent::남자\] \&\& !player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::레즈경험\] \+= (\d+)\n *\} else if target\.talent\[Talent::남자\] \&\& player\.talent\[Talent::남자\] \{\n *target\.exp\[Exp::BL경험\] \+= (\d+)\n *\}'
-  replace   : 'add_gay_les_exp_with(target, player, $2, $1);'
-
-- regex     : "[^ ]+? [\\+\\-\\*/]?= .+"
-  replace   : "$0;"
-
-# reduce leading zero
-# 020 -> 20
-- regex     : ' 0(\d+)'
-  replace   : " $1"
-
-- regex     : 'Base::체력'
-  replace   : 'Base::Hp'
-
-- regex     : 'Base::기력'
-  replace   : 'Base::Sp'
-
-- regex     : 'to_stain\(1\)'
-  replace   : 'StainType::애액'
-
-- regex     : 'to_stain\(2\)'
-  replace   : 'StainType::페니스'
-
-- regex     : 'to_stain\(4\)'
-  replace   : 'StainType::정액'
-
-- regex     : 'to_stain\(8\)'
-  replace   : 'StainType::애널'
-
-- regex     : 'to_stain\(16\)'
-  replace   : 'StainType::모유'
-
-- regex     : 'to_stain\(32\)'
-  replace   : 'StainType::파괴의피'
-
-- regex     : 'to_stain\(64\)'
-  replace   : 'StainType::점액'
+- regex     : "'([^']*)' '([^']*)'"
+  replace   : "'$1$2'"
 
